@@ -5,7 +5,7 @@ TensorFlow is a widely used, open-source machine learning framework developed by
 
 This repo will walk you through using Tendorflow and Keras to create and serve a Linear Regression ML model. The model will predict cab fares in the city of chicago using TRIP_MILES and TRIP_MINUTES as inputs.
 ## Linear Regression Basics
-Linear Regression is a very common statistical method that allows us to learn a relationship (or function) from a given set of continuous data (training data). For example, we are given some data points of x and corresponding y and we need to learn the relationship between them or the **function** that maps a given value of x to its corresponding value of y. In the case of Linear regression, the function is a straight line, i.e, **f(x) = wX + b**. The **weight** (w) and the **bias** (b) are refered to as the parameters of the model. 
+Linear Regression is a very common statistical method that allows us to learn the relationship (or function) from a given set of continuous data (training data). For example, we are given some data points (x, y) and we need to learn the relationship between them or the **function** that maps a given value of x to its corresponding value of y. In the case of Linear regression, the function is a straight line, i.e, **f(x) = w<sub>1</sub>X<sub>1</sub> + b**. The **weight** (w) and the **bias** (b) are refered to as the parameters of the model. 
 ## Example Data
 | TRIP_MILES | TRIP_MINUTES | FARE | COMPANY | TIP_RATE |
 |------------|--------------|------|---------|----------|
