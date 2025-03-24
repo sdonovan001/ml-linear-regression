@@ -31,12 +31,8 @@ conda install keras pandas scikit-learn plotly seaborn tensorflow -y
 ## Basic ML Pipeline
 A machine learning (ML) pipeline is a series of interconnected steps that streamline the process of building, training, evaluating, and deploying ML models, from data ingestion to model deployment and monitoring.  We will walk you through the steps outlined in the diagram below.
 <img src="/images/pipeline.png" alt="On Nooo!" witdh="600" height="450">
-### Data Analysis, Preparation and Extraction
-
-### Model Training
-
-### Model Validation / Evaluation
-
-### Model Serving
-
-### Exploring Wrapper Src
+1. Data Analysis, Preparation and Extraction
+2. Model Training
+3. Model Validation / Evaluation
+4. Model Serving
+5. Exploring Wrapper Src
