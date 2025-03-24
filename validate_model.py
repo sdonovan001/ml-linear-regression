@@ -1,5 +1,5 @@
-import model_wrapper as wpr
 import pandas as pd
+import wrapper.model as wpr
 
 ################# main ####################
 

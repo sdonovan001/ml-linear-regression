@@ -1,5 +1,5 @@
-import model_wrapper as wpr
 import pandas as pd
+import wrapper.model as wpr
 
 
 def prompt_user(learning_rate, epochs, batch_size):
@@ -16,8 +16,8 @@ learning_rate = 0.5
 epochs = 5 
 batch_size = 10
 
-features = ['TRIP_MILES', "TRIP_MINUTES"]
-#features = ['TRIP_MILES']
+#features = ['TRIP_MILES', "TRIP_MINUTES"]
+features = ['TRIP_MILES']
 label = 'FARE'
 
 training_data = pd.read_csv("./datasets/training-data.csv")
