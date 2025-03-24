@@ -28,5 +28,6 @@ conda create --name keras python=3.11
 conda activate keras
 conda install keras pandas scikit-learn plotly seaborn tensorflow -y
 ```
----
+## Basic ML Pipeline
+A machine learning (ML) pipeline is a series of interconnected steps that streamline the process of building, training, evaluating, and deploying ML models, from data ingestion to model deployment and monitoring.  We will walk you through the steps outlined in the diagram below.
 <img src="/images/pipeline.png" alt="On Nooo!" witdh="600" height="450">
