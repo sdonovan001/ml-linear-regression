@@ -28,4 +28,5 @@ conda create --name keras python=3.11
 conda activate keras
 conda install keras pandas scikit-learn plotly seaborn tensorflow -y
 ```
-
+---
+<img src="/images/pipeline.png" alt="On Nooo!" witdh="550" height="550">
