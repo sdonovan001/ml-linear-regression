@@ -38,10 +38,3 @@ A machine learning (ML) pipeline is a series of interconnected steps that stream
 ### Model Serving
 ### Exploring Wrapper Src
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%">
-<iframe src="https://www.youtube.com/embed/Y8oMazZy5Dw 
-        title="Anti-Trust - The War Machine" frameborder="0" allowfullscreen
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        style="position: absolute; width: 100%; height: 100%;">
-</iframe>
-</div>
