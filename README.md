@@ -36,3 +36,6 @@ A machine learning (ML) pipeline is a series of interconnected steps that stream
 4. Model Validation / Evaluation
 5. Model Serving
 6. Exploring Wrapper Src
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y8oMazZy5Dw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![something is broken](https://img.youtube.com/vi/Y8oMazZy5Dw/0.jpg)](https://www.youtube.com/watch?v=Y8oMazZy5Dw)
