@@ -32,7 +32,7 @@ while save_model == "N":
 
    model.set_params(learning_rate, epochs, batch_size)
    model.train(training_data, features, label)
-   model.graph()
+   model.graph(10)
 
    save_model = input("\nSave model and exit? [N]:") or "N" 
 
