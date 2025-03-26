@@ -1,4 +1,4 @@
-# TF / Keras ML Linear Regression Example
+# ML Linear Regression Example
 ---
 ## Overview
 This repo will walk you through training and serving a Linear Regression ML model using Tensorflow and Keras. TensorFlow is a widely used, open-source machine learning framework developed by Google.  It is primarily used for training and deploying neural networks. Tensorflow offers a flexible and scalable platform for building and running machine learning models.  Keras is a high-level, user-friendly API for building and training deep learning models.  It was initially developed as an independent library but is now tightly integrated into TensorFlow as its official high-level API. Keras simplifies the process of working with neural networks, making it easier to define, train, and evaluate models.
