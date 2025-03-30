@@ -1,7 +1,6 @@
 import pandas as pd
 import wrapper.model as wpr
 
-
 def prompt_user(learning_rate, epochs, batch_size):
    learning_rate = float(input("Learning Rate [{}]:".format(learning_rate)) or learning_rate)
    epochs = int(input("Epochs [{}]:".format(epochs)) or epochs)
@@ -10,13 +9,11 @@ def prompt_user(learning_rate, epochs, batch_size):
    return learning_rate, epochs, batch_size
 
 ########### main ##############
-
 # hyperparameters used for model training
 learning_rate = 0.5
-epochs = 5 
-batch_size = 10
+epochs = 20
+batch_size = 50
 
-#features = ['TRIP_MILES', "TRIP_MINUTES"]
 features = ['TRIP_MILES']
 label = 'FARE'
 
@@ -26,14 +23,14 @@ model = None
 save_model = "N" 
 
 while save_model == "N":
-   model = wpr.Model()
+   model = wpr.Model(training_data, features, label)
 
    learning_rate, epochs, batch_size = prompt_user(learning_rate, epochs, batch_size)
 
    model.set_params(learning_rate, epochs, batch_size)
-   model.train(training_data, features, label)
-   model.graph(10)
+   model.train()
+   model.graph()
 
    save_model = input("\nSave model and exit? [N]:") or "N" 
 
-model.save("./saved_model/fare-model/4")
+model.save("./saved_model/fare-model/1")

@@ -12,19 +12,19 @@ import plotly.graph_objects as go
 from wrapper import graph
 
 class Model:
-   def __init__(self, learning_rate=0.001, epochs=20, batch_size=50):
-      self._learning_rate = learning_rate
-      self._epochs = epochs
-      self._batch_size = batch_size
-
-   def train(self, training_data, feature_names, label_name):
-      self._num_features = len(feature_names) 
+   def __init__(self, training_data, feature_names, label_name, learning_rate=0.001, epochs=20, batch_size=50):
+      self._num_features = len(feature_names)
       self._training_data = training_data
       self._feature_names = feature_names
       self._label_name = label_name
 
-      features = training_data.loc[:, feature_names].values
-      label = training_data[label_name].values 
+      self._learning_rate = learning_rate
+      self._epochs = epochs
+      self._batch_size = batch_size
+
+   def train(self):
+      features = self._training_data.loc[:, self._feature_names].values
+      label = self._training_data[self._label_name].values 
  
       self._print_banner("TRAINING MODEL")
 
@@ -50,7 +50,7 @@ class Model:
    
       # To track the progression of training, we're going to take a snapshot
       # of the model's root mean squared error at each epoch.
-      self._equation = "{} = {:.3f} * {}".format(label_name, self._trained_weight[0][0], feature_names[0])
+      self._equation = "{} = {:.3f} * {}".format(self._label_name, self._trained_weight[0][0], self._feature_names[0])
       self._equation += " + {:.3f}".format(self._trained_bias[0])
 
       print("=====================================================")
