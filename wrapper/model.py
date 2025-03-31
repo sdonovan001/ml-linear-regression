@@ -5,9 +5,6 @@ import numpy as np
 
 import keras
 import tensorflow as tf
-import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
 
 from wrapper import graph
 
