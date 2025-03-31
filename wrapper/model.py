@@ -12,15 +12,15 @@ import plotly.graph_objects as go
 from wrapper import graph
 
 class Model:
-   def __init__(self, training_data, feature_names, label_name, learning_rate=0.001, epochs=20, batch_size=50):
+   def __init__(self, training_data, feature_names, label_name, learning_rate=0.001, batch_size=50, epochs=20):
       self._num_features = len(feature_names)
       self._training_data = training_data
       self._feature_names = feature_names
       self._label_name = label_name
 
       self._learning_rate = learning_rate
-      self._epochs = epochs
       self._batch_size = batch_size
+      self._epochs = epochs
 
    def train(self):
       features = self._training_data.loc[:, self._feature_names].values
@@ -56,46 +56,48 @@ class Model:
       print("=====================================================")
       print("Model Fit Equation: {}".format(self._equation))
 
-   def predict(self, df, features, label, batch_size=50):
-      batch = df.sample(n=batch_size).copy()
+   def predict(self, batch_size=50):
+      batch = self._training_data.sample(n=batch_size).copy()
       batch.set_index(np.arange(batch_size), inplace=True)
 
       self._print_banner("EVALUATE MODEL")
-      self._model.evaluate(x=batch.loc[:, features].values, y=batch.loc[:, label].values)
-      predicted_values = self._model.predict(x=batch.loc[:, features].values)
+      self._model.evaluate(x=batch.loc[:, self._feature_names].values, y=batch.loc[:, self._label_name].values)
+      predicted_values = self._model.predict(x=batch.loc[:, self._feature_names].values)
 
-      data = {"PREDICTED_FARE": [], "OBSERVED_FARE": [], "L1_LOSS": [], features[0]: []}
+      data = {"PREDICTED_FARE": [], "OBSERVED_FARE": [], "L1_LOSS": [], self._feature_names[0]: []}
 
       def format_currency(x):
          return "${:.2f}".format(x)
 
       for i in range(batch_size):
          predicted = predicted_values[i][0]
-         observed = batch.at[i, label]
+         observed = batch.at[i, self._label_name]
          data["PREDICTED_FARE"].append(format_currency(predicted))
          data["OBSERVED_FARE"].append(format_currency(observed))
          data["L1_LOSS"].append(format_currency(abs(observed - predicted)))
-         data[features[0]].append(batch.at[i, features[0]])
+         data[self._feature_names[0]].append(batch.at[i, self._feature_names[0]])
 
       output_df = pd.DataFrame(data)
 
       self._print_banner("PREDICTIONS")
       print(output_df)
 
-   def set_params(self, learning_rate=0.001, epochs=20, batch_size=50):
+   def set_params(self, learning_rate=0.001, batch_size=50, epochs=20):
       self._learning_rate = learning_rate
-      self._epochs = epochs
       self._batch_size = batch_size
+      self._epochs = epochs
 
    def graph(self, sample_size=200):
       self._graph = graph.Graph(self) 
       self._graph.show(sample_size)
 
-   def save(self, path):
+   def save(self, model_name="default"):
+      path = "./saved_models/{}/1".format(model_name)
       self._model.save(path)
       print("Model saved to {}".format(path))
 
-   def load(self, path):
+   def load(self, model_name="default"):
+      path = "./saved_models/{}/1".format(model_name)
       self._model = tf.keras.saving.load_model(path)
       print("Model loaded from {}".format(path))
       self._print_banner("MODEL SUMMARY")

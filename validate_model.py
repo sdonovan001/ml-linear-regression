@@ -5,10 +5,10 @@ import wrapper.model as wpr
 
 validate_df = pd.read_csv("./datasets/validation-data.csv")
 
-model = wpr.Model() 
-model.load("./saved_model/fare-model/1")
-
 features = ["TRIP_MILES"]
 label = "FARE"
 
-model.predict(validate_df, features, label, batch_size=200)
+model = wpr.Model(validate_df, features, label) 
+model.load(model_name="fare-model")
+
+model.predict(batch_size=6339)
