@@ -1,4 +1,5 @@
 import pandas as pd
+
 import wrapper.model as wpr
 
 ################# main ####################
@@ -12,3 +13,4 @@ model = wpr.Model(validate_df, features, label)
 model.load(model_name="fare-model")
 
 model.predict(batch_size=6339)
+model.graph()

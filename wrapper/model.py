@@ -9,9 +9,9 @@ import tensorflow as tf
 from wrapper import graph
 
 class Model:
-   def __init__(self, training_data, feature_names, label_name, learning_rate=0.001, batch_size=50, epochs=20):
+   def __init__(self, data, feature_names, label_name, learning_rate=0.001, batch_size=50, epochs=20):
       self._num_features = len(feature_names)
-      self._training_data = training_data
+      self._data = data
       self._feature_names = feature_names
       self._label_name = label_name
 
@@ -19,9 +19,12 @@ class Model:
       self._batch_size = batch_size
       self._epochs = epochs
 
+      self._trained = False
+
    def train(self):
-      features = self._training_data.loc[:, self._feature_names].values
-      label = self._training_data[self._label_name].values 
+      self._trained = True
+      features = self._data.loc[:, self._feature_names].values
+      label = self._data[self._label_name].values 
  
       self._print_banner("TRAINING MODEL")
 
@@ -45,16 +48,13 @@ class Model:
       self._rmse = pd.DataFrame(history.history)["root_mean_squared_error"]
       self._epochs = history.epoch
    
-      # To track the progression of training, we're going to take a snapshot
-      # of the model's root mean squared error at each epoch.
-      self._equation = "{} = {:.3f} * {}".format(self._label_name, self._trained_weight[0][0], self._feature_names[0])
-      self._equation += " + {:.3f}".format(self._trained_bias[0])
+      self._set_equation()
 
       print("=====================================================")
       print("Model Fit Equation: {}".format(self._equation))
 
    def predict(self, batch_size=50):
-      batch = self._training_data.sample(n=batch_size).copy()
+      batch = self._data.sample(n=batch_size).copy()
       batch.set_index(np.arange(batch_size), inplace=True)
 
       self._print_banner("EVALUATE MODEL")
@@ -69,8 +69,10 @@ class Model:
       for i in range(batch_size):
          predicted = predicted_values[i][0]
          observed = batch.at[i, self._label_name]
-         data["PREDICTED_FARE"].append(format_currency(predicted))
-         data["OBSERVED_FARE"].append(format_currency(observed))
+         #data["PREDICTED_FARE"].append(format_currency(predicted))
+         #data["OBSERVED_FARE"].append(format_currency(observed))
+         data["PREDICTED_FARE"].append(predicted)
+         data["OBSERVED_FARE"].append(observed)
          data["L1_LOSS"].append(format_currency(abs(observed - predicted)))
          data[self._feature_names[0]].append(batch.at[i, self._feature_names[0]])
 
@@ -78,6 +80,10 @@ class Model:
 
       self._print_banner("PREDICTIONS")
       print(output_df)
+
+      self._trained_weight = self._model.get_weights()[0]
+      self._trained_bias = self._model.get_weights()[1]
+      self._set_equation()
 
    def set_params(self, learning_rate=0.001, batch_size=50, epochs=20):
       self._learning_rate = learning_rate
@@ -105,3 +111,12 @@ class Model:
       header = "-" * 80
       banner = header + "\n" + "|" + banner_text.center(78) + "|" + "\n" + header
       print(banner)
+
+   def _set_equation(self):
+      if len(self._feature_names) == 1:
+         self._equation = "{} = {:.3f} * {}".format(self._label_name, self._trained_weight[0][0], self._feature_names[0])
+         self._equation += " + {:.3f}".format(self._trained_bias[0])
+      else:
+         self._equation = "{} = {:.3f} * {}".format(self._label_name, self._trained_weight[0][0], self._feature_names[0])
+         self._equation += " + {:.3f} * {}".format(self._trained_weight[1][0], self._feature_names[1])
+         self._equation += " + {:.3f}".format(self._trained_bias[0])
