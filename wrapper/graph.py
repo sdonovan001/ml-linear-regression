@@ -25,11 +25,12 @@ class Graph:
                              subplot_titles=(loss_title, model_title),
                              specs=[[{"type": "scatter"}, {"type": model_plot_type}]])
          self._plot_loss_curve(self._model._epochs, self._model._rmse, fig)
-         hyper_params = "Hyperparameters (Learning Rate: {} Epocs: {} Batch Size: {})".format(self._model._learning_rate,
+         hyper_params = "Hyperparameters (Learning Rate: {} Epochs: {} Batch Size: {})".format(self._model._learning_rate,
                                                                                               len(self._model._epochs),
                                                                                               self._model._batch_size)
          fig.update_layout(title_text=hyper_params, title_x=0.5)
       else:
+         model_title = "Model Plot (RMSE: {:.4f})<br>{}".format(self._model._rmse, self._model._equation)
          fig = make_subplots(rows=1, cols=1,
                              subplot_titles=(model_title,),
                              specs=[[{"type": model_plot_type}]])

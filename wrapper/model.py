@@ -53,12 +53,15 @@ class Model:
       print("=====================================================")
       print("Model Fit Equation: {}".format(self._equation))
 
-   def predict(self, batch_size=50):
-      batch = self._data.sample(n=batch_size).copy()
-      batch.set_index(np.arange(batch_size), inplace=True)
+   def predict(self, sample_size=0):
+      if not sample_size:
+         sample_size = len(self._data)
+
+      batch = self._data.sample(n=sample_size).copy()
+      batch.set_index(np.arange(sample_size), inplace=True)
 
       self._print_banner("EVALUATE MODEL")
-      self._model.evaluate(x=batch.loc[:, self._feature_names].values, y=batch.loc[:, self._label_name].values)
+      _, self._rmse = self._model.evaluate(x=batch.loc[:, self._feature_names].values, y=batch.loc[:, self._label_name].values)
       predicted_values = self._model.predict(x=batch.loc[:, self._feature_names].values)
 
       data = {"PREDICTED_FARE": [], "OBSERVED_FARE": [], "L1_LOSS": [], self._feature_names[0]: []}
@@ -66,13 +69,11 @@ class Model:
       def format_currency(x):
          return "${:.2f}".format(x)
 
-      for i in range(batch_size):
+      for i in range(sample_size):
          predicted = predicted_values[i][0]
          observed = batch.at[i, self._label_name]
-         #data["PREDICTED_FARE"].append(format_currency(predicted))
-         #data["OBSERVED_FARE"].append(format_currency(observed))
-         data["PREDICTED_FARE"].append(predicted)
-         data["OBSERVED_FARE"].append(observed)
+         data["PREDICTED_FARE"].append(format_currency(predicted))
+         data["OBSERVED_FARE"].append(format_currency(observed))
          data["L1_LOSS"].append(format_currency(abs(observed - predicted)))
          data[self._feature_names[0]].append(batch.at[i, self._feature_names[0]])
 

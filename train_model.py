@@ -14,7 +14,6 @@ learning_rate = 0.5
 batch_size = 50
 epochs = 20
 
-features = ['TRIP_MILES', 'TRIP_MINUTES']
 features = ['TRIP_MILES']
 label = 'FARE'
 
