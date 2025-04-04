@@ -1,7 +1,9 @@
 # ML Linear Regression Example
 ---
 ## Overview
-This repo will walk you through training and validating a Linear Regression ML model that predicts cab fares in the city of Chicago using TensorFlow and Keras. TensorFlow is a widely used, open-source machine learning framework developed by Google.  It is primarily used for training and deploying neural networks. TensorFlow offers a flexible and scalable platform for building and running machine learning models.  Keras is a high-level, user-friendly API for building and training deep learning models.  It was initially developed as an independent library but is now tightly integrated into TensorFlow as its official high-level API. Keras simplifies the process of working with neural networks, making it easier to define, train, and evaluate models.
+This repo will walk you through training and validating a Linear Regression ML model that predicts cab fares in the city of Chicago using TensorFlow and Keras. TensorFlow is an open-source machine learning framework developed by Google, primarily used for training and deploying neural networks. It offers a flexible and scalable platform for building and running machine learning models.  Keras is a high-level, user-friendly API for building and training deep learning models.  It was initially developed as an independent library but is now tightly integrated into TensorFlow as its official high-level API. Keras simplifies the process of working with neural networks, making it easier to define, train, and evaluate models.  
+
+Our main focus is on high level machine learning constructs.  This is not intended to be a tutorial on TensorFlow or Keras.
 
 ## Linear Regression Basics
 Linear Regression is a very common statistical method that allows us to learn the relationship (or function) from a given set of continuous data (training data). For example, we are given some data points **[(X<sub>1</sub>, Y<sub>1</sub>), (X<sub>2</sub>, Y<sub>2</sub>), ... (X<sub>n</sub>, Y<sub>n</sub>)]** and we need to learn the relationship between them or the function **f(X)** that maps a given value of **X** to its corresponding value of **Y**. In the case of Linear regression, the function is a straight line of the form **f(x) = wX + b** where **w** (the weight) and **b** (the bias) are refered to as the parameters of the model. To determine the values of **w** and **b** that best fit the given data points, we will use a **Gradient Descent** optimizer algorithm.
@@ -42,7 +44,7 @@ Model training is the stage where a machine learning algorithm learns from data 
 [![something is broken](/images/video-330.png)](https://www.youtube.com/embed/lVncFREcmAI "Training Basics")
 [![something is broken](/images/video-620.png)](https://www.youtube.com/embed/qaN1b-h8lF8 "Training Details")
 ### Model Validation / Evaluation
-Model validation within an ML pipeline is the process of evaluating a trained model's performance on unseen data to ensure it generalizes well and meets business objectives, before deploying it. It involves using a separate dataset (validation or test set) that the model hasn't seen during training to assess its predictive capabilities.
+Model validation within an ML pipeline is the process of evaluating a trained model's performance on unseen data to ensure it generalizes well and meets business objectives. It involves using a separate dataset (validation or test set) that the model hasn't seen during training to assess its predictive capabilities.
 
 [![something is broken](/images/video-600.png)](https://www.youtube.com/embed/wHw7Sml_XmE "Model Validation")
 
