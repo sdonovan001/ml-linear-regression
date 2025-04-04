@@ -46,5 +46,5 @@ Model training is the stage where a machine learning algorithm learns from data 
 ### Model Validation / Evaluation
 Model validation within an ML pipeline is the process of evaluating a trained model's performance on unseen data to ensure it generalizes well and meets business objectives. It involves using a separate dataset (validation or test set) that the model hasn't seen during training to assess its predictive capabilities.
 
-[![something is broken](/images/video-600.png)](https://www.youtube.com/embed/wHw7Sml_XmE "Model Validation")
+[![something is broken](/images/video-600.png)](https://www.youtube.com/embed/fjDF18NBvPY "Model Validation")
 
