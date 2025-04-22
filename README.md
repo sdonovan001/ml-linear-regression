@@ -47,4 +47,4 @@ Model validation within an ML pipeline is the process of evaluating a trained mo
 
 [![something is broken](/images/video-600.png)](https://www.youtube.com/embed/fjDF18NBvPY "Model Validation")
 
-⚠️ If you're interested in learning how to serve this model, now that your've trained it... see my [model_serving](https://github.com/sdonovan001/model-serving) repo. :warning:
+⚠️ If you're interested in learning how to serve this model, now that your've trained it, see my [model_serving](https://github.com/sdonovan001/model-serving) repo.
